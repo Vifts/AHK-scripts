@@ -3,48 +3,6 @@
 ;Script start
 `::
 
-;------------------- Variable Declarations -------------------
-;---- Sleep timers ----
-	Random, sFishWait, 15000, 25000
-	Random, sLookForFish, 5000, 9000
-	Random, sMove, 3, 7
-	Random, sFishMove, 10, 30
-		
-		
-;------------------- Finding fish -------------------
-loop {
-
-	;---- Sleep timers ----
-		Random, sFishWait, 15000, 25000
-		Random, sLookForFish, 5000, 9000
-		Random, sMove, 3, 7
-		Random, sFishMove, 10, 30
-		
-	;---- Random mouse movement away from spot ----
-		Random, rMoveX, 975, 1560
-		Random, rMoveY, 25, 820
-
-	ImageSearch, OutputX, OutputY, 1, 25, 1360, 815, D:\fish.png
-	if (ErrorLevel = 2) {
-		MsgBox Could not conduct the search.
-		exitapp
-	} else if (ErrorLevel = 1) {
-	sleep sLookForFish
-	} else {
-	;Determine random area within fish spot
-	Random, sFishX, OutputX-20, OutputX-85
-	Random, sFishY, OutputY-20, OutputY+20
-	
-	Mousemove, sFishX, sFishY, sMove
-	sleep sFishMove
-	click
-	sleep sFishMove
-	
-	Mousemove, rMoveX, rMoveY, sMove
-	sleep sfishWait
-	}
-}
-
 ;------------------- Dropping -------------------
 loop {
 
@@ -146,9 +104,11 @@ loop {
 		Random, sInvPos25, 10, 30
 		Random, sInvPos26, 10, 30
 		
-	;Speed & Position  to Fishing spot 
+	;Speed & Position  to Fishing spot
+		Random, sFishWait, 15000, 25000
+		Random, sLookForFish, 5000, 9000
 		Random, sMove, 3, 7
-		Random, sFishMove, 10, 30
+		Random, sFishMove, 10, 30	
 		Random, sFishMoveDelay, 10, 30
 		
 	;Inventory Mouse Speed
@@ -321,8 +281,36 @@ loop {
 	Send {shift up}
 	sleep sFishMoveDelay
 	}
-}
 
+;------------------- Finding fish -------------------
+
+	;---- Sleep timers ----
+		Random, sFishWait, 20000, 45000
+		Random, sLookForFish, 5000, 9000
+		Random, sMove, 3, 7
+		Random, sFishMove, 10, 30
+		
+	;---- Random mouse movement away from spot ----
+		Random, rMoveX, 975, 1560
+		Random, rMoveY, 25, 820
+
+	ImageSearch, OutputX, OutputY, 1, 25, 1360, 815, D:\fish.png
+	if (ErrorLevel = 1) {
+	sleep sLookForFish
+	} else {
+	;Determine random area within fish spot
+	Random, sFishX, OutputX-20, OutputX+20
+	Random, sFishY, OutputY-20, OutputY+20
+	
+	Mousemove, sFishX, sFishY, sMove
+	sleep sFishMove
+	click
+	sleep sFishMove
+	
+	Mousemove, rMoveX, rMoveY, sMove
+	sleep sfishWait
+	}
+}
 
 ;End script
 

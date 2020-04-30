@@ -61,12 +61,12 @@ loop {
 	;Row 2
 		Random, x3, 1390, 1410
 		Random, y3, 605, 625
-		Random x4, 1430, 1450
-		Random y4, 605, 625
-		Random x5, 1470, 1490
-		Random y5, 605, 625
-		Random x6, 1515, 1535
-		Random y6, 605, 625
+		Random, x4, 1430, 1450
+		Random, y4, 605, 625
+		Random, x5, 1470, 1490
+		Random, y5, 605, 625
+		Random, x6, 1515, 1535
+		Random, y6, 605, 625
 	
 	;Row 3
 		Random, x7, 1390, 1410
